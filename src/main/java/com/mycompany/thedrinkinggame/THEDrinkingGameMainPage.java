@@ -4,19 +4,37 @@
  */
 package com.mycompany.thedrinkinggame;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nando
  */
 public class THEDrinkingGameMainPage extends javax.swing.JFrame {
-
+    private int playerCounter = 0;
     /**
      * Creates new form THEDrinkingGameMainPage
      */
     public THEDrinkingGameMainPage() {
         initComponents();
+        PlayerTxtFld3.setVisible(false);
+        PlayerTxtFld5.setVisible(false);
+        PlayerTxtFld4.setVisible(false);
+        PlayerLbl3.setVisible(false);
+        PlayerLbl4.setVisible(false);
+        PlayerLbl5.setVisible(false);
     }
-
+    
+    public class NoMorePlayerPlace{
+        JFrame Warning;
+        NoMorePlayerPlace()
+        {
+            Warning = new JFrame();
+            JOptionPane.showMessageDialog(Warning,"Nem lehet több játékost hozzáadni.","Figyelmeztetés",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,16 +48,16 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         PlayerTxtFld1 = new javax.swing.JTextField();
         PlayerTxtFld2 = new javax.swing.JTextField();
         PlayerTxtFld3 = new javax.swing.JTextField();
-        PlayerTxtFld5 = new javax.swing.JTextField();
         PlayerTxtFld4 = new javax.swing.JTextField();
+        PlayerTxtFld5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         AddBttn = new javax.swing.JButton();
         StartBttn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        PlayerLbl3 = new javax.swing.JLabel();
+        PlayerLbl4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        PlayerLbl5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AZ ivós játék");
@@ -73,6 +91,11 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         AddBttn.setMaximumSize(new java.awt.Dimension(40, 40));
         AddBttn.setMinimumSize(new java.awt.Dimension(35, 35));
         AddBttn.setPreferredSize(new java.awt.Dimension(40, 40));
+        AddBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBttnActionPerformed(evt);
+            }
+        });
 
         StartBttn.setBackground(new java.awt.Color(174, 68, 90));
         StartBttn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -86,21 +109,21 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(232, 188, 185));
         jLabel2.setText("Játékos 1");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(232, 188, 185));
-        jLabel3.setText("Játékos 3");
+        PlayerLbl3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        PlayerLbl3.setForeground(new java.awt.Color(232, 188, 185));
+        PlayerLbl3.setText("Játékos 3");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(232, 188, 185));
-        jLabel4.setText("Játékos 4");
+        PlayerLbl4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        PlayerLbl4.setForeground(new java.awt.Color(232, 188, 185));
+        PlayerLbl4.setText("Játékos 4");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(232, 188, 185));
         jLabel5.setText("Játékos 2");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(232, 188, 185));
-        jLabel6.setText("Játékos 5");
+        PlayerLbl5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        PlayerLbl5.setForeground(new java.awt.Color(232, 188, 185));
+        PlayerLbl5.setText("Játékos 5");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,25 +136,24 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(AddBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(245, 245, 245)
                         .addComponent(StartBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(305, 305, 305)
+                        .addComponent(AddBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(228, 228, 228)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(PlayerTxtFld3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(PlayerTxtFld1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(PlayerTxtFld4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(PlayerTxtFld2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))))
+                            .addComponent(PlayerTxtFld1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PlayerLbl3)
+                            .addComponent(PlayerLbl4)
+                            .addComponent(PlayerLbl5)
+                            .addComponent(PlayerTxtFld4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PlayerTxtFld2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(PlayerTxtFld3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,23 +168,23 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PlayerTxtFld2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(PlayerLbl3)
+                .addGap(4, 4, 4)
+                .addComponent(PlayerTxtFld3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PlayerLbl4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PlayerTxtFld4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(PlayerLbl5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PlayerTxtFld2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PlayerTxtFld3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(AddBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(StartBttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(StartBttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(135, 135, 135))
         );
 
@@ -183,6 +205,31 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private void PlayerTxtFld3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerTxtFld3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PlayerTxtFld3ActionPerformed
+
+    private void AddBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBttnActionPerformed
+        //Játékos név mező hozzáadása
+         playerCounter++;
+
+    // Show the respective PlayerTxtFld based on the playerCounter value
+    switch (playerCounter) {
+        case 1:
+            PlayerLbl3.setVisible(true);
+            PlayerTxtFld3.setVisible(true);
+            break;
+        case 2:
+            PlayerLbl4.setVisible(true);
+            PlayerTxtFld4.setVisible(true);
+            break;
+        case 3:
+            PlayerLbl5.setVisible(true);
+            PlayerTxtFld5.setVisible(true);
+            break;
+        default:
+            // If more than 3 players are attempted to be added, show a warning
+            new NoMorePlayerPlace();
+            break;
+    }
+    }//GEN-LAST:event_AddBttnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,6 +268,9 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBttn;
+    private javax.swing.JLabel PlayerLbl3;
+    private javax.swing.JLabel PlayerLbl4;
+    private javax.swing.JLabel PlayerLbl5;
     private javax.swing.JTextField PlayerTxtFld1;
     private javax.swing.JTextField PlayerTxtFld2;
     private javax.swing.JTextField PlayerTxtFld3;
@@ -229,10 +279,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JButton StartBttn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
