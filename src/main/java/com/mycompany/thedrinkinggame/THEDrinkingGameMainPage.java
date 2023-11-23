@@ -4,6 +4,8 @@
  */
 package com.mycompany.thedrinkinggame;
 
+import java.util.ArrayList;
+import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private int playerCounter = 0;
+    List<String> players = new ArrayList<String>();  
     /**
      * Creates new form THEDrinkingGameMainPage
      */
@@ -24,6 +27,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         PlayerLbl3.setVisible(false);
         PlayerLbl4.setVisible(false);
         PlayerLbl5.setVisible(false);
+        setLocationRelativeTo(null);
     }
     
     public class NoMorePlayerPlace{
@@ -69,6 +73,10 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         PlayerLbl2 = new javax.swing.JLabel();
         PlayerLbl5 = new javax.swing.JLabel();
         TruthOrDarePnl = new javax.swing.JPanel();
+        RandomNameLbl1 = new javax.swing.JLabel();
+        TruthBttn = new javax.swing.JButton();
+        DareBttn = new javax.swing.JButton();
+        OrLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AZ ivós játék");
@@ -211,20 +219,68 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
         TruthOrDarePnl.setBackground(new java.awt.Color(102, 37, 73));
 
+        RandomNameLbl1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        RandomNameLbl1.setForeground(new java.awt.Color(232, 188, 185));
+        RandomNameLbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        TruthBttn.setBackground(new java.awt.Color(174, 68, 90));
+        TruthBttn.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        TruthBttn.setForeground(new java.awt.Color(243, 159, 90));
+        TruthBttn.setText("Felelsz");
+        TruthBttn.setMaximumSize(new java.awt.Dimension(300, 100));
+        TruthBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TruthBttnActionPerformed(evt);
+            }
+        });
+
+        DareBttn.setBackground(new java.awt.Color(174, 68, 90));
+        DareBttn.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        DareBttn.setForeground(new java.awt.Color(69, 25, 82));
+        DareBttn.setText("Mersz");
+        DareBttn.setMaximumSize(new java.awt.Dimension(300, 100));
+
+        OrLbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        OrLbl.setForeground(new java.awt.Color(232, 188, 185));
+        OrLbl.setText("VAGY");
+
         javax.swing.GroupLayout TruthOrDarePnlLayout = new javax.swing.GroupLayout(TruthOrDarePnl);
         TruthOrDarePnl.setLayout(TruthOrDarePnlLayout);
         TruthOrDarePnlLayout.setHorizontalGroup(
             TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
+                .addGroup(TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addGroup(TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(DareBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TruthBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
+                        .addGap(292, 292, 292)
+                        .addComponent(OrLbl)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TruthOrDarePnlLayout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(RandomNameLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(119, 119, 119))
         );
         TruthOrDarePnlLayout.setVerticalGroup(
             TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
+            .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(RandomNameLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(TruthBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(OrLbl)
+                .addGap(53, 53, 53)
+                .addComponent(DareBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         NavigatorTbbdPn.addTab("tab2", TruthOrDarePnl);
 
-        getContentPane().add(NavigatorTbbdPn, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, -35, -1, 600));
+        getContentPane().add(NavigatorTbbdPn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -35, -1, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -260,10 +316,28 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     private void StartBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartBttnActionPerformed
         if(!PlayerTxtFld1.getText().isEmpty() && !PlayerTxtFld2.getText().isEmpty())
+        {
+            players.add(PlayerTxtFld1.getText());
+            players.add(PlayerTxtFld2.getText());
+            players.add(PlayerTxtFld3.getText());
+            players.add(PlayerTxtFld4.getText());
+            players.add(PlayerTxtFld5.getText());
+            
             NavigatorTbbdPn.setSelectedIndex(1);
+            
+            Random r = new Random();
+            int randomItem = r.nextInt(players.size());
+            String randomPlayer = players.get(randomItem);
+            
+            RandomNameLbl1.setText(randomPlayer);
+        }
         else
             new NotEnoughPlayer();
     }//GEN-LAST:event_StartBttnActionPerformed
+
+    private void TruthBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruthBttnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TruthBttnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,8 +376,10 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBttn;
+    private javax.swing.JButton DareBttn;
     private javax.swing.JPanel MainPnl;
     private javax.swing.JTabbedPane NavigatorTbbdPn;
+    private javax.swing.JLabel OrLbl;
     private javax.swing.JLabel PlayerLbl1;
     private javax.swing.JLabel PlayerLbl2;
     private javax.swing.JLabel PlayerLbl3;
@@ -314,7 +390,9 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JTextField PlayerTxtFld3;
     private javax.swing.JTextField PlayerTxtFld4;
     private javax.swing.JTextField PlayerTxtFld5;
+    private javax.swing.JLabel RandomNameLbl1;
     private javax.swing.JButton StartBttn;
+    private javax.swing.JButton TruthBttn;
     private javax.swing.JPanel TruthOrDarePnl;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
