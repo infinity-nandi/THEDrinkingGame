@@ -350,8 +350,14 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     private void AddBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBttnActionPerformed
         //Játékos név mező hozzáadása
+            if (playerCounter < 3) 
+            {
             playerCounter++;
-
+            }
+            else
+            {
+            new NoMorePlayerPlace();
+            }
            switch (playerCounter) {
                case 1:
                    PlayerLbl3.setVisible(true);
@@ -364,9 +370,6 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                case 3:
                    PlayerLbl5.setVisible(true);
                    PlayerTxtFld5.setVisible(true);
-                   break;
-               default:
-                   new NoMorePlayerPlace();
                    break;
                 }
     }//GEN-LAST:event_AddBttnActionPerformed
@@ -417,23 +420,26 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_TruthBttnActionPerformed
 
     private void MinusPalyerBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusPalyerBttnActionPerformed
+            if (playerCounter > 0) 
+            {
             playerCounter--;
-
+            }
+            else
+            {
+            new MinimumPlayer();
+            }
             switch (playerCounter) {
-                case 3:
+                case 2:
                     PlayerLbl5.setVisible(false);
                     PlayerTxtFld5.setVisible(false);
                     break;
-                case 2:
+                case 1:
                     PlayerLbl4.setVisible(false);
                     PlayerTxtFld4.setVisible(false);
                     break;
-                case 1:
+                case 0:
                     PlayerLbl3.setVisible(false);
                     PlayerTxtFld3.setVisible(false);
-                    break;
-                default:
-                    new MinimumPlayer();
                     break;
                 }
     }//GEN-LAST:event_MinusPalyerBttnActionPerformed
