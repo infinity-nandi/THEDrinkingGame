@@ -35,7 +35,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         NoMorePlayerPlace()
         {
             Warning = new JFrame();
-            JOptionPane.showMessageDialog(Warning,"Nem lehet több játékost hozzáadni!","Figyelmeztetés",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(Warning,"Nem lehet több játékossst hozzáadni!","Figyelmeztetés",JOptionPane.WARNING_MESSAGE);
         }
     }
     
