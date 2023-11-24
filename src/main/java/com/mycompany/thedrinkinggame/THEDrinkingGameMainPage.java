@@ -87,6 +87,8 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         TruthBttn = new javax.swing.JButton();
         DareBttn = new javax.swing.JButton();
         OrLbl = new javax.swing.JLabel();
+        CurrentTaskPnl = new javax.swing.JPanel();
+        SummaryPagePnl = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AZ ivós játék");
@@ -205,7 +207,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                             .addComponent(PlayerLbl2)
                             .addComponent(PlayerTxtFld3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPnlLayout.createSequentialGroup()
                 .addGap(0, 120, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,6 +312,32 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
         NavigatorTbbdPn.addTab("tab2", TruthOrDarePnl);
 
+        javax.swing.GroupLayout CurrentTaskPnlLayout = new javax.swing.GroupLayout(CurrentTaskPnl);
+        CurrentTaskPnl.setLayout(CurrentTaskPnlLayout);
+        CurrentTaskPnlLayout.setHorizontalGroup(
+            CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        CurrentTaskPnlLayout.setVerticalGroup(
+            CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 565, Short.MAX_VALUE)
+        );
+
+        NavigatorTbbdPn.addTab("tab3", CurrentTaskPnl);
+
+        javax.swing.GroupLayout SummaryPagePnlLayout = new javax.swing.GroupLayout(SummaryPagePnl);
+        SummaryPagePnl.setLayout(SummaryPagePnlLayout);
+        SummaryPagePnlLayout.setHorizontalGroup(
+            SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        SummaryPagePnlLayout.setVerticalGroup(
+            SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 565, Short.MAX_VALUE)
+        );
+
+        NavigatorTbbdPn.addTab("tab4", SummaryPagePnl);
+
         getContentPane().add(NavigatorTbbdPn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -35, -1, 600));
 
         pack();
@@ -321,35 +349,55 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     private void AddBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBttnActionPerformed
         //Játékos név mező hozzáadása
-         playerCounter++;
+            playerCounter++;
 
-        switch (playerCounter) {
-            case 1:
-                PlayerLbl3.setVisible(true);
-                PlayerTxtFld3.setVisible(true);
-                break;
-            case 2:
-                PlayerLbl4.setVisible(true);
-                PlayerTxtFld4.setVisible(true);
-                break;
-            case 3:
-                PlayerLbl5.setVisible(true);
-                PlayerTxtFld5.setVisible(true);
-                break;
-            default:
-                new NoMorePlayerPlace();
-                break;
-    }
+           switch (playerCounter) {
+               case 1:
+                   PlayerLbl3.setVisible(true);
+                   PlayerTxtFld3.setVisible(true);
+                   break;
+               case 2:
+                   PlayerLbl4.setVisible(true);
+                   PlayerTxtFld4.setVisible(true);
+                   break;
+               case 3:
+                   PlayerLbl5.setVisible(true);
+                   PlayerTxtFld5.setVisible(true);
+                   break;
+               default:
+                   new NoMorePlayerPlace();
+                   break;
+                }
     }//GEN-LAST:event_AddBttnActionPerformed
 
     private void StartBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartBttnActionPerformed
         if(!PlayerTxtFld1.getText().isEmpty() && !PlayerTxtFld2.getText().isEmpty())
         {
-            players.add(PlayerTxtFld1.getText());
-            players.add(PlayerTxtFld2.getText());
-            players.add(PlayerTxtFld3.getText());
-            players.add(PlayerTxtFld4.getText());
-            players.add(PlayerTxtFld5.getText());
+            switch(playerCounter)
+            {
+                default:
+                    players.add(PlayerTxtFld1.getText());
+                    players.add(PlayerTxtFld2.getText());
+                    break;
+                case 1:
+                    players.add(PlayerTxtFld1.getText());
+                    players.add(PlayerTxtFld2.getText());
+                    players.add(PlayerTxtFld3.getText());
+                    break;
+                case 2:
+                    players.add(PlayerTxtFld1.getText());
+                    players.add(PlayerTxtFld2.getText());
+                    players.add(PlayerTxtFld3.getText());
+                    players.add(PlayerTxtFld4.getText());
+                    break;
+                case 3:
+                    players.add(PlayerTxtFld1.getText());
+                    players.add(PlayerTxtFld2.getText());
+                    players.add(PlayerTxtFld3.getText());
+                    players.add(PlayerTxtFld4.getText());
+                    players.add(PlayerTxtFld5.getText());
+                    break;
+            }
             
             NavigatorTbbdPn.setSelectedIndex(1);
             
@@ -368,25 +416,25 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_TruthBttnActionPerformed
 
     private void MinusPalyerBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusPalyerBttnActionPerformed
-        playerCounter--;
+            playerCounter--;
 
-        switch (playerCounter) {
-            case 2:
-                PlayerLbl5.setVisible(false);
-                PlayerTxtFld5.setVisible(false);
-                break;
-            case 1:
-                PlayerLbl4.setVisible(false);
-                PlayerTxtFld4.setVisible(false);
-                break;
-            case 0:
-                PlayerLbl3.setVisible(false);
-                PlayerTxtFld3.setVisible(false);
-                break;
-            default:
-                new MinimumPlayer();
-                break;
-        }
+            switch (playerCounter) {
+                case 3:
+                    PlayerLbl5.setVisible(false);
+                    PlayerTxtFld5.setVisible(false);
+                    break;
+                case 2:
+                    PlayerLbl4.setVisible(false);
+                    PlayerTxtFld4.setVisible(false);
+                    break;
+                case 1:
+                    PlayerLbl3.setVisible(false);
+                    PlayerTxtFld3.setVisible(false);
+                    break;
+                default:
+                    new MinimumPlayer();
+                    break;
+                }
     }//GEN-LAST:event_MinusPalyerBttnActionPerformed
 
     /**
@@ -426,6 +474,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBttn;
+    private javax.swing.JPanel CurrentTaskPnl;
     private javax.swing.JButton DareBttn;
     private javax.swing.JPanel MainPnl;
     private javax.swing.JButton MinusPalyerBttn;
@@ -443,6 +492,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JTextField PlayerTxtFld5;
     private javax.swing.JLabel RandomNameLbl1;
     private javax.swing.JButton StartBttn;
+    private javax.swing.JPanel SummaryPagePnl;
     private javax.swing.JButton TruthBttn;
     private javax.swing.JPanel TruthOrDarePnl;
     private javax.swing.JLabel jLabel1;
