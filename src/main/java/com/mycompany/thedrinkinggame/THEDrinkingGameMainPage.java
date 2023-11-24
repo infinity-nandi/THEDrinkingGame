@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private int playerCounter = 0;
+    private int drinkCounter = 0;
     List<String> players = new ArrayList<String>();  
     /**
      * Creates new form THEDrinkingGameMainPage
@@ -35,7 +36,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         NoMorePlayerPlace()
         {
             Warning = new JFrame();
-            JOptionPane.showMessageDialog(Warning,"Nem lehet több játékossst hozzáadni!","Figyelmeztetés",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(Warning,"Nem lehet több játékost hozzáadni!","Figyelmeztetés",JOptionPane.WARNING_MESSAGE);
         }
     }
     
