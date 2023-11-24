@@ -45,7 +45,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         NotEnoughPlayer()
         {
             Error = new JFrame();
-            JOptionPane.showMessageDialog(Error,"A kezdéshez minimum 2 játékos szükséges!","Hiba",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(Error,"A kezdéshez minimum 2 játékos kell!","Hiba",JOptionPane.ERROR_MESSAGE);
         }
     }
     
