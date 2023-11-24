@@ -48,6 +48,15 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         }
     }
     
+    public class MinimumPlayer{
+        JFrame Error;
+        MinimumPlayer()
+        {
+            Error = new JFrame();
+            JOptionPane.showMessageDialog(Error,"Nem lehet 2-nél kevesebb játékos!","Hiba",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,6 +81,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         PlayerLbl4 = new javax.swing.JLabel();
         PlayerLbl2 = new javax.swing.JLabel();
         PlayerLbl5 = new javax.swing.JLabel();
+        MinusPalyerBttn = new javax.swing.JButton();
         TruthOrDarePnl = new javax.swing.JPanel();
         RandomNameLbl1 = new javax.swing.JLabel();
         TruthBttn = new javax.swing.JButton();
@@ -152,6 +162,22 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         PlayerLbl5.setForeground(new java.awt.Color(232, 188, 185));
         PlayerLbl5.setText("Játékos 5");
 
+        MinusPalyerBttn.setBackground(new java.awt.Color(174, 68, 90));
+        MinusPalyerBttn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        MinusPalyerBttn.setForeground(new java.awt.Color(29, 26, 57));
+        MinusPalyerBttn.setText("-");
+        MinusPalyerBttn.setToolTipText("");
+        MinusPalyerBttn.setAlignmentX(0.5F);
+        MinusPalyerBttn.setBorder(null);
+        MinusPalyerBttn.setMaximumSize(new java.awt.Dimension(40, 40));
+        MinusPalyerBttn.setMinimumSize(new java.awt.Dimension(35, 35));
+        MinusPalyerBttn.setPreferredSize(new java.awt.Dimension(40, 40));
+        MinusPalyerBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MinusPalyerBttnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MainPnlLayout = new javax.swing.GroupLayout(MainPnl);
         MainPnl.setLayout(MainPnlLayout);
         MainPnlLayout.setHorizontalGroup(
@@ -162,8 +188,10 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                         .addGap(245, 245, 245)
                         .addComponent(StartBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MainPnlLayout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(AddBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(275, 275, 275)
+                        .addComponent(AddBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(MinusPalyerBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MainPnlLayout.createSequentialGroup()
                         .addGap(228, 228, 228)
                         .addGroup(MainPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +237,9 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(AddBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(MainPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MinusPalyerBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(StartBttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(135, 135, 135))
@@ -293,24 +323,22 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         //Játékos név mező hozzáadása
          playerCounter++;
 
-    // Show the respective PlayerTxtFld based on the playerCounter value
-    switch (playerCounter) {
-        case 1:
-            PlayerLbl3.setVisible(true);
-            PlayerTxtFld3.setVisible(true);
-            break;
-        case 2:
-            PlayerLbl4.setVisible(true);
-            PlayerTxtFld4.setVisible(true);
-            break;
-        case 3:
-            PlayerLbl5.setVisible(true);
-            PlayerTxtFld5.setVisible(true);
-            break;
-        default:
-            // If more than 3 players are attempted to be added, show a warning
-            new NoMorePlayerPlace();
-            break;
+        switch (playerCounter) {
+            case 1:
+                PlayerLbl3.setVisible(true);
+                PlayerTxtFld3.setVisible(true);
+                break;
+            case 2:
+                PlayerLbl4.setVisible(true);
+                PlayerTxtFld4.setVisible(true);
+                break;
+            case 3:
+                PlayerLbl5.setVisible(true);
+                PlayerTxtFld5.setVisible(true);
+                break;
+            default:
+                new NoMorePlayerPlace();
+                break;
     }
     }//GEN-LAST:event_AddBttnActionPerformed
 
@@ -338,6 +366,28 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private void TruthBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruthBttnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TruthBttnActionPerformed
+
+    private void MinusPalyerBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusPalyerBttnActionPerformed
+        playerCounter--;
+
+        switch (playerCounter) {
+            case 2:
+                PlayerLbl5.setVisible(false);
+                PlayerTxtFld5.setVisible(false);
+                break;
+            case 1:
+                PlayerLbl4.setVisible(false);
+                PlayerTxtFld4.setVisible(false);
+                break;
+            case 0:
+                PlayerLbl3.setVisible(false);
+                PlayerTxtFld3.setVisible(false);
+                break;
+            default:
+                new MinimumPlayer();
+                break;
+        }
+    }//GEN-LAST:event_MinusPalyerBttnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,6 +428,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JButton AddBttn;
     private javax.swing.JButton DareBttn;
     private javax.swing.JPanel MainPnl;
+    private javax.swing.JButton MinusPalyerBttn;
     private javax.swing.JTabbedPane NavigatorTbbdPn;
     private javax.swing.JLabel OrLbl;
     private javax.swing.JLabel PlayerLbl1;
