@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -16,6 +20,10 @@ import javax.swing.JOptionPane;
 public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private int playerCounter = 0;
     private int drinkCounter = 0;
+    private Connection conn = null;
+            
+        
+    
     List<String> players = new ArrayList<String>();  
     /**
      * Creates new form THEDrinkingGameMainPage
@@ -29,6 +37,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         PlayerLbl4.setVisible(false);
         PlayerLbl5.setVisible(false);
         setLocationRelativeTo(null);
+        
     }
     
     public class NoMorePlayerPlace{
@@ -45,7 +54,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         NotEnoughPlayer()
         {
             Error = new JFrame();
-            JOptionPane.showMessageDialog(Error,"A kezdéshez minimum 2 játékos kell!","Hiba",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(Error,"A kezdéshez minimum 2 játékos szükséges!","Hiba",JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -376,7 +385,10 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     private void StartBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartBttnActionPerformed
         if(!PlayerTxtFld1.getText().isEmpty() && !PlayerTxtFld2.getText().isEmpty())
+            
         {
+            try {conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
+            if (conn != null) {
             switch(playerCounter)
             {
                 default:
@@ -402,6 +414,15 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                     players.add(PlayerTxtFld5.getText());
                     break;
             }
+            } String insertSQL = "INSERT INTO felhasznalok (nev, user_id) VALUES (?, ?)";
+
+            try (PreparedStatement preparedStatement = conn.prepareStatement(insertSQL)) {
+                for (int i = 1; i <= playerCounter + 2; i++) {
+                    preparedStatement.setString(1, players.get(i - 1));
+                    preparedStatement.setInt(2, i);
+                    preparedStatement.executeUpdate();
+                }
+            }
             
             NavigatorTbbdPn.setSelectedIndex(1);
             
@@ -410,6 +431,10 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             String randomPlayer = players.get(randomItem);
             
             RandomNameLbl1.setText(randomPlayer);
+            } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+        }
         }
         else
             new NotEnoughPlayer();
@@ -470,10 +495,22 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(THEDrinkingGameMainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame", "root", "")) {
+                if (conn != null) {
+                    String deleteSQL = "DELETE FROM felhasznalok";
+                    try (PreparedStatement preparedStatement = conn.prepareStatement(deleteSQL)) {
+                        preparedStatement.executeUpdate();
+                    }
+                }
+            } catch (Exception e) {
+            e.printStackTrace();
+            JFrame Error = new JFrame();
+            JOptionPane.showMessageDialog(Error, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+        }
                 new THEDrinkingGameMainPage().setVisible(true);
             }
         });
