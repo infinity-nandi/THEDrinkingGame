@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 
 /**
@@ -98,6 +99,10 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         DareBttn = new javax.swing.JButton();
         OrLbl = new javax.swing.JLabel();
         CurrentTaskPnl = new javax.swing.JPanel();
+        drinkBttn = new javax.swing.JButton();
+        diditBttn = new javax.swing.JButton();
+        OrLbl1 = new javax.swing.JLabel();
+        taskLbl = new javax.swing.JLabel();
         SummaryPagePnl = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -216,19 +221,18 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                             .addComponent(PlayerTxtFld2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(PlayerLbl2)
                             .addComponent(PlayerTxtFld3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(228, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPnlLayout.createSequentialGroup()
-                .addGap(0, 120, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
+                            .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(MainPnlLayout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)))
+                .addGap(273, 273, 273))
         );
         MainPnlLayout.setVerticalGroup(
             MainPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PlayerLbl1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PlayerTxtFld1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,38 +303,84 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                             .addComponent(TruthBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
                         .addGap(292, 292, 292)
-                        .addComponent(OrLbl)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TruthOrDarePnlLayout.createSequentialGroup()
-                .addGap(0, 121, Short.MAX_VALUE)
-                .addComponent(RandomNameLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119))
+                        .addComponent(OrLbl))
+                    .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(RandomNameLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)))
+                .addGap(277, 277, 277))
         );
         TruthOrDarePnlLayout.setVerticalGroup(
             TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(RandomNameLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(33, 33, 33)
+                .addComponent(RandomNameLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addComponent(TruthBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addComponent(OrLbl)
                 .addGap(53, 53, 53)
                 .addComponent(DareBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(68, 68, 68))
         );
 
         NavigatorTbbdPn.addTab("tab2", TruthOrDarePnl);
+
+        CurrentTaskPnl.setBackground(new java.awt.Color(102, 37, 73));
+
+        drinkBttn.setBackground(new java.awt.Color(174, 68, 90));
+        drinkBttn.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        drinkBttn.setForeground(new java.awt.Color(243, 159, 90));
+        drinkBttn.setText("Ivott");
+        drinkBttn.setBorder(null);
+        drinkBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drinkBttnActionPerformed(evt);
+            }
+        });
+
+        diditBttn.setBackground(new java.awt.Color(174, 68, 90));
+        diditBttn.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        diditBttn.setForeground(new java.awt.Color(69, 25, 82));
+        diditBttn.setText("Megcsinálta");
+        diditBttn.setBorder(null);
+
+        OrLbl1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        OrLbl1.setForeground(new java.awt.Color(232, 188, 185));
+        OrLbl1.setText("VAGY");
+
+        taskLbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        taskLbl.setForeground(new java.awt.Color(232, 188, 185));
+        taskLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout CurrentTaskPnlLayout = new javax.swing.GroupLayout(CurrentTaskPnl);
         CurrentTaskPnl.setLayout(CurrentTaskPnlLayout);
         CurrentTaskPnlLayout.setHorizontalGroup(
             CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(CurrentTaskPnlLayout.createSequentialGroup()
+                .addGroup(CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CurrentTaskPnlLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(drinkBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(OrLbl1)
+                        .addGap(18, 18, 18)
+                        .addComponent(diditBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CurrentTaskPnlLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(taskLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         CurrentTaskPnlLayout.setVerticalGroup(
             CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CurrentTaskPnlLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(taskLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(214, 214, 214)
+                .addGroup(CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(drinkBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diditBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(OrLbl1))
+                .addGap(113, 113, 113))
         );
 
         NavigatorTbbdPn.addTab("tab3", CurrentTaskPnl);
@@ -339,7 +389,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         SummaryPagePnl.setLayout(SummaryPagePnlLayout);
         SummaryPagePnlLayout.setHorizontalGroup(
             SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 807, Short.MAX_VALUE)
         );
         SummaryPagePnlLayout.setVerticalGroup(
             SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,6 +492,17 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     private void TruthBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruthBttnActionPerformed
         // TODO add your handling code here:
+        NavigatorTbbdPn.setSelectedIndex(2);
+        try {conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT kerdes_text FROM kerdesek WHERE kerdes_tipus = \"felelsz\" ORDER BY RAND() LIMIT 1");
+                while (rs.next()) {   
+                    taskLbl.setText(rs.getString(1));
+                }
+            } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_TruthBttnActionPerformed
 
     private void MinusPalyerBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusPalyerBttnActionPerformed
@@ -468,6 +529,10 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                     break;
                 }
     }//GEN-LAST:event_MinusPalyerBttnActionPerformed
+
+    private void drinkBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drinkBttnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_drinkBttnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -524,6 +589,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JButton MinusPalyerBttn;
     private javax.swing.JTabbedPane NavigatorTbbdPn;
     private javax.swing.JLabel OrLbl;
+    private javax.swing.JLabel OrLbl1;
     private javax.swing.JLabel PlayerLbl1;
     private javax.swing.JLabel PlayerLbl2;
     private javax.swing.JLabel PlayerLbl3;
@@ -539,6 +605,9 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JPanel SummaryPagePnl;
     private javax.swing.JButton TruthBttn;
     private javax.swing.JPanel TruthOrDarePnl;
+    private javax.swing.JButton diditBttn;
+    private javax.swing.JButton drinkBttn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel taskLbl;
     // End of variables declaration//GEN-END:variables
 }
