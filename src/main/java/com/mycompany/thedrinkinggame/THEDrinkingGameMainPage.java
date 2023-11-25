@@ -22,6 +22,8 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private int playerCounter = 0;
     private int drinkCounter = 0;
     private Connection conn = null;
+    private String randomPlayer = "";
+    private String currentTask = "";
             
         
     
@@ -224,7 +226,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                             .addComponent(PlayerTxtFld5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(MainPnlLayout.createSequentialGroup()
                         .addGap(124, 124, 124)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(273, 273, 273))
         );
         MainPnlLayout.setVerticalGroup(
@@ -285,6 +287,11 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         DareBttn.setForeground(new java.awt.Color(69, 25, 82));
         DareBttn.setText("Mersz");
         DareBttn.setMaximumSize(new java.awt.Dimension(300, 100));
+        DareBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DareBttnActionPerformed(evt);
+            }
+        });
 
         OrLbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         OrLbl.setForeground(new java.awt.Color(232, 188, 185));
@@ -343,6 +350,11 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         diditBttn.setForeground(new java.awt.Color(69, 25, 82));
         diditBttn.setText("Megcsinálta");
         diditBttn.setBorder(null);
+        diditBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diditBttnActionPerformed(evt);
+            }
+        });
 
         OrLbl1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         OrLbl1.setForeground(new java.awt.Color(232, 188, 185));
@@ -478,7 +490,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             
             Random r = new Random();
             int randomItem = r.nextInt(players.size());
-            String randomPlayer = players.get(randomItem);
+            randomPlayer = players.get(randomItem);
             
             RandomNameLbl1.setText(randomPlayer);
             } catch (Exception e) {
@@ -492,6 +504,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     private void TruthBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruthBttnActionPerformed
         // TODO add your handling code here:
+        currentTask = "felelsz";
         NavigatorTbbdPn.setSelectedIndex(2);
         try {conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
             Statement stmt = conn.createStatement();
@@ -532,7 +545,87 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
 
     private void drinkBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drinkBttnActionPerformed
         // TODO add your handling code here:
+        int jatekos_ivott = 0;
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame", "root", "")) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ivott FROM felhasznalok WHERE nev = '"+randomPlayer+"'");
+                while (rs.next()) {   
+                    jatekos_ivott = rs.getInt(1);
+                    
+                }
+            String usertaskSQL = "UPDATE felhasznalok SET ivott = '"+(jatekos_ivott+1)+"' WHERE nev='"+randomPlayer+"'";
+            try (PreparedStatement preparedStatement = conn.prepareStatement(usertaskSQL)) {
+                preparedStatement.executeUpdate();
+            }
+            
+            Random r = new Random();
+            int randomItem = r.nextInt(players.size());
+            randomPlayer = players.get(randomItem);
+            
+            RandomNameLbl1.setText(randomPlayer);
+            NavigatorTbbdPn.setSelectedIndex(1);
+            } catch (Exception e) {
+            e.printStackTrace();
+            JFrame Error = new JFrame();
+            JOptionPane.showMessageDialog(Error, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_drinkBttnActionPerformed
+
+    private void diditBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diditBttnActionPerformed
+        // TODO add your handling code here:
+        int jatekos_teljesitett = 0;
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame", "root", "")) {
+            Statement stmt = conn.createStatement();
+            if (currentTask == "felelsz") {
+                ResultSet rs = stmt.executeQuery("SELECT felelsz_teljesites FROM felhasznalok WHERE nev = '"+randomPlayer+"'");
+                while (rs.next()) {   
+                    jatekos_teljesitett = rs.getInt(1); 
+                }
+                String usertaskSQL = "UPDATE felhasznalok SET felelsz_teljesites = '"+(jatekos_teljesitett+1)+"' WHERE nev='"+randomPlayer+"'";
+            try (PreparedStatement preparedStatement = conn.prepareStatement(usertaskSQL)) {
+                preparedStatement.executeUpdate();
+            }
+            } else if (currentTask == "mersz") {
+                ResultSet rs = stmt.executeQuery("SELECT mersz_teljesites FROM felhasznalok WHERE nev = '"+randomPlayer+"'");
+                while (rs.next()) {   
+                    jatekos_teljesitett = rs.getInt(1); 
+                }
+                String usertaskSQL = "UPDATE felhasznalok SET mersz_teljesites = '"+(jatekos_teljesitett+1)+"' WHERE nev='"+randomPlayer+"'";
+            try (PreparedStatement preparedStatement = conn.prepareStatement(usertaskSQL)) {
+                preparedStatement.executeUpdate();
+            }
+            }
+            
+            
+            
+            Random r = new Random();
+            int randomItem = r.nextInt(players.size());
+            randomPlayer = players.get(randomItem);
+            
+            RandomNameLbl1.setText(randomPlayer);
+            NavigatorTbbdPn.setSelectedIndex(1);
+            } catch (Exception e) {
+            e.printStackTrace();
+            JFrame Error = new JFrame();
+            JOptionPane.showMessageDialog(Error, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_diditBttnActionPerformed
+
+    private void DareBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DareBttnActionPerformed
+        // TODO add your handling code here:
+        currentTask = "mersz";
+        NavigatorTbbdPn.setSelectedIndex(2);
+        try {conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT kerdes_text FROM kerdesek WHERE kerdes_tipus = \"mersz\" ORDER BY RAND() LIMIT 1");
+                while (rs.next()) {   
+                    taskLbl.setText(rs.getString(1));
+                }
+            } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_DareBttnActionPerformed
 
     /**
      * @param args the command line arguments
