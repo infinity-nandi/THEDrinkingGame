@@ -112,6 +112,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         ExitBttn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ResultTbl = new javax.swing.JTable();
+        SaveResultsBttn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AZ ivós játék");
@@ -451,8 +452,13 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        ResultTbl.setMaximumSize(new java.awt.Dimension(650, 0));
+        ResultTbl.setMaximumSize(new java.awt.Dimension(530, 0));
         jScrollPane1.setViewportView(ResultTbl);
+
+        SaveResultsBttn.setBackground(new java.awt.Color(174, 68, 90));
+        SaveResultsBttn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        SaveResultsBttn.setForeground(new java.awt.Color(69, 25, 82));
+        SaveResultsBttn.setText("Eredmények mentése");
 
         javax.swing.GroupLayout SummaryPagePnlLayout = new javax.swing.GroupLayout(SummaryPagePnl);
         SummaryPagePnl.setLayout(SummaryPagePnlLayout);
@@ -461,27 +467,30 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             .addGroup(SummaryPagePnlLayout.createSequentialGroup()
                 .addGroup(SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SummaryPagePnlLayout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addComponent(ExitBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SummaryPagePnlLayout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(EredmenyLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SummaryPagePnlLayout.createSequentialGroup()
-                .addGap(0, 57, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                        .addComponent(EredmenyLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SummaryPagePnlLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SummaryPagePnlLayout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addGroup(SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ExitBttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SaveResultsBttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         SummaryPagePnlLayout.setVerticalGroup(
             SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SummaryPagePnlLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(EredmenyLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140)
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
+                .addComponent(SaveResultsBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(ExitBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(52, 52, 52))
         );
 
         NavigatorTbbdPn.addTab("tab4", SummaryPagePnl);
@@ -811,6 +820,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JTextField PlayerTxtFld5;
     private javax.swing.JLabel RandomNameLbl1;
     private javax.swing.JTable ResultTbl;
+    private javax.swing.JButton SaveResultsBttn;
     private javax.swing.JButton StartBttn;
     private javax.swing.JPanel SummaryPagePnl;
     private javax.swing.JButton TruthBttn;
