@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -100,12 +101,17 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         TruthBttn = new javax.swing.JButton();
         DareBttn = new javax.swing.JButton();
         OrLbl = new javax.swing.JLabel();
+        GameOverBttn = new javax.swing.JButton();
         CurrentTaskPnl = new javax.swing.JPanel();
         drinkBttn = new javax.swing.JButton();
-        diditBttn = new javax.swing.JButton();
         OrLbl1 = new javax.swing.JLabel();
         taskLbl = new javax.swing.JLabel();
+        diditBttn = new javax.swing.JButton();
         SummaryPagePnl = new javax.swing.JPanel();
+        EredmenyLbl = new javax.swing.JLabel();
+        ExitBttn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ResultTbl = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AZ ivós játék");
@@ -297,6 +303,16 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         OrLbl.setForeground(new java.awt.Color(232, 188, 185));
         OrLbl.setText("VAGY");
 
+        GameOverBttn.setBackground(new java.awt.Color(174, 68, 90));
+        GameOverBttn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        GameOverBttn.setForeground(new java.awt.Color(69, 25, 82));
+        GameOverBttn.setText("Játék vége");
+        GameOverBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GameOverBttnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout TruthOrDarePnlLayout = new javax.swing.GroupLayout(TruthOrDarePnl);
         TruthOrDarePnl.setLayout(TruthOrDarePnlLayout);
         TruthOrDarePnlLayout.setHorizontalGroup(
@@ -304,30 +320,33 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
                 .addGroup(TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addGroup(TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(DareBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TruthBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
                         .addGap(292, 292, 292)
                         .addComponent(OrLbl))
                     .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(RandomNameLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)))
-                .addGap(277, 277, 277))
+                        .addGap(175, 175, 175)
+                        .addGroup(TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TruthBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DareBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RandomNameLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(GameOverBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(332, Short.MAX_VALUE))
         );
         TruthOrDarePnlLayout.setVerticalGroup(
             TruthOrDarePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TruthOrDarePnlLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(RandomNameLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                .addGap(51, 51, 51)
+                .addGap(25, 25, 25)
+                .addComponent(RandomNameLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(TruthBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(28, 28, 28)
                 .addComponent(OrLbl)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
                 .addComponent(DareBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(50, 50, 50)
+                .addComponent(GameOverBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         NavigatorTbbdPn.addTab("tab2", TruthOrDarePnl);
@@ -345,6 +364,14 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             }
         });
 
+        OrLbl1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        OrLbl1.setForeground(new java.awt.Color(232, 188, 185));
+        OrLbl1.setText("VAGY");
+
+        taskLbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        taskLbl.setForeground(new java.awt.Color(232, 188, 185));
+        taskLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         diditBttn.setBackground(new java.awt.Color(174, 68, 90));
         diditBttn.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         diditBttn.setForeground(new java.awt.Color(69, 25, 82));
@@ -356,14 +383,6 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             }
         });
 
-        OrLbl1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        OrLbl1.setForeground(new java.awt.Color(232, 188, 185));
-        OrLbl1.setText("VAGY");
-
-        taskLbl.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        taskLbl.setForeground(new java.awt.Color(232, 188, 185));
-        taskLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
         javax.swing.GroupLayout CurrentTaskPnlLayout = new javax.swing.GroupLayout(CurrentTaskPnl);
         CurrentTaskPnl.setLayout(CurrentTaskPnlLayout);
         CurrentTaskPnlLayout.setHorizontalGroup(
@@ -371,41 +390,98 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
             .addGroup(CurrentTaskPnlLayout.createSequentialGroup()
                 .addGroup(CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CurrentTaskPnlLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                        .addGap(49, 49, 49)
                         .addComponent(drinkBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(OrLbl1)
                         .addGap(18, 18, 18)
                         .addComponent(diditBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(CurrentTaskPnlLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(taskLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
         CurrentTaskPnlLayout.setVerticalGroup(
             CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CurrentTaskPnlLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(taskLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(214, 214, 214)
+                .addGap(172, 172, 172)
                 .addGroup(CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(drinkBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(diditBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OrLbl1))
-                .addGap(113, 113, 113))
+                    .addComponent(OrLbl1)
+                    .addComponent(diditBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(155, 155, 155))
         );
 
         NavigatorTbbdPn.addTab("tab3", CurrentTaskPnl);
+
+        SummaryPagePnl.setBackground(new java.awt.Color(102, 37, 73));
+        SummaryPagePnl.setMaximumSize(new java.awt.Dimension(650, 32767));
+        SummaryPagePnl.setPreferredSize(new java.awt.Dimension(650, 565));
+
+        EredmenyLbl.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        EredmenyLbl.setForeground(new java.awt.Color(232, 188, 185));
+        EredmenyLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EredmenyLbl.setText("A játék eredményei");
+
+        ExitBttn.setBackground(new java.awt.Color(174, 68, 90));
+        ExitBttn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ExitBttn.setForeground(new java.awt.Color(69, 25, 82));
+        ExitBttn.setText("Kilépés");
+        ExitBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitBttnActionPerformed(evt);
+            }
+        });
+
+        ResultTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Név", "Felelések teljesítve", "Merések teljesítve", "Ivások száma"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ResultTbl.setMaximumSize(new java.awt.Dimension(650, 0));
+        jScrollPane1.setViewportView(ResultTbl);
 
         javax.swing.GroupLayout SummaryPagePnlLayout = new javax.swing.GroupLayout(SummaryPagePnl);
         SummaryPagePnl.setLayout(SummaryPagePnlLayout);
         SummaryPagePnlLayout.setHorizontalGroup(
             SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 807, Short.MAX_VALUE)
+            .addGroup(SummaryPagePnlLayout.createSequentialGroup()
+                .addGroup(SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SummaryPagePnlLayout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(ExitBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SummaryPagePnlLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(EredmenyLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SummaryPagePnlLayout.createSequentialGroup()
+                .addGap(0, 57, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         SummaryPagePnlLayout.setVerticalGroup(
             SummaryPagePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
+            .addGroup(SummaryPagePnlLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(EredmenyLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140)
+                .addComponent(ExitBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         NavigatorTbbdPn.addTab("tab4", SummaryPagePnl);
@@ -571,6 +647,22 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_drinkBttnActionPerformed
 
+    private void DareBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DareBttnActionPerformed
+        // TODO add your handling code here:
+        currentTask = "mersz";
+        NavigatorTbbdPn.setSelectedIndex(2);
+        try {conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT kerdes_text FROM kerdesek WHERE kerdes_tipus = \"mersz\" ORDER BY RAND() LIMIT 1");
+                while (rs.next()) {   
+                    taskLbl.setText(rs.getString(1));
+                }
+            } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_DareBttnActionPerformed
+
     private void diditBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diditBttnActionPerformed
         // TODO add your handling code here:
         int jatekos_teljesitett = 0;
@@ -595,13 +687,13 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                 preparedStatement.executeUpdate();
             }
             }
-            
-            
-            
+
+
+
             Random r = new Random();
             int randomItem = r.nextInt(players.size());
             randomPlayer = players.get(randomItem);
-            
+
             RandomNameLbl1.setText(randomPlayer);
             NavigatorTbbdPn.setSelectedIndex(1);
             } catch (Exception e) {
@@ -611,21 +703,40 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_diditBttnActionPerformed
 
-    private void DareBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DareBttnActionPerformed
+    private void GameOverBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameOverBttnActionPerformed
         // TODO add your handling code here:
-        currentTask = "mersz";
-        NavigatorTbbdPn.setSelectedIndex(2);
-        try {conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
+        try 
+        {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT kerdes_text FROM kerdesek WHERE kerdes_tipus = \"mersz\" ORDER BY RAND() LIMIT 1");
-                while (rs.next()) {   
-                    taskLbl.setText(rs.getString(1));
-                }
-            } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+            String sql = "Select * from felhasznalok";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next())
+            {
+                String user_id = String.valueOf(rs.getInt("user_id"));
+                String nev = rs.getString("nev");
+                String felelsz_teljesites = String.valueOf(rs.getInt("felelsz_teljesites"));
+                String mersz_teljesites = String.valueOf(rs.getInt("mersz_teljesites"));
+                String ivott = String.valueOf(rs.getInt("ivott"));
+                
+                String tbData[] = {user_id,nev,felelsz_teljesites,mersz_teljesites,ivott};
+                DefaultTableModel tblModel = (DefaultTableModel)ResultTbl.getModel();
+                
+                tblModel.addRow(tbData);
+            }
+            NavigatorTbbdPn.setSelectedIndex(3);
         }
-    }//GEN-LAST:event_DareBttnActionPerformed
+        catch (Exception e) {
+            e.printStackTrace();
+            JFrame Error = new JFrame();
+            JOptionPane.showMessageDialog(Error, "Nem lehet csatlakozni az adatbázishoz", "Hiba", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_GameOverBttnActionPerformed
+
+    private void ExitBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBttnActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_ExitBttnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -678,6 +789,9 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JButton AddBttn;
     private javax.swing.JPanel CurrentTaskPnl;
     private javax.swing.JButton DareBttn;
+    private javax.swing.JLabel EredmenyLbl;
+    private javax.swing.JButton ExitBttn;
+    private javax.swing.JButton GameOverBttn;
     private javax.swing.JPanel MainPnl;
     private javax.swing.JButton MinusPalyerBttn;
     private javax.swing.JTabbedPane NavigatorTbbdPn;
@@ -694,6 +808,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JTextField PlayerTxtFld4;
     private javax.swing.JTextField PlayerTxtFld5;
     private javax.swing.JLabel RandomNameLbl1;
+    private javax.swing.JTable ResultTbl;
     private javax.swing.JButton StartBttn;
     private javax.swing.JPanel SummaryPagePnl;
     private javax.swing.JButton TruthBttn;
@@ -701,6 +816,7 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
     private javax.swing.JButton diditBttn;
     private javax.swing.JButton drinkBttn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel taskLbl;
     // End of variables declaration//GEN-END:variables
 }
