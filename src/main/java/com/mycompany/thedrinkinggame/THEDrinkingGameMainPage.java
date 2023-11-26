@@ -397,16 +397,16 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(diditBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(CurrentTaskPnlLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(64, 64, 64)
                         .addComponent(taskLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         CurrentTaskPnlLayout.setVerticalGroup(
             CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CurrentTaskPnlLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(43, 43, 43)
                 .addComponent(taskLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addGroup(CurrentTaskPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(drinkBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OrLbl1)
@@ -585,8 +585,9 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         try {conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT kerdes_text FROM kerdesek WHERE kerdes_tipus = \"felelsz\" ORDER BY RAND() LIMIT 1");
-                while (rs.next()) {   
-                    taskLbl.setText(rs.getString(1));
+                while (rs.next()) {
+                   String formatidText = "<html>" + rs.getString(1).replace("\n", "<br>") + "</html>";
+                   taskLbl.setText(formatidText);
                 }
             } catch (Exception e) {
             e.printStackTrace();
@@ -654,8 +655,9 @@ public class THEDrinkingGameMainPage extends javax.swing.JFrame {
         try {conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thedrinkinggame","root","");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT kerdes_text FROM kerdesek WHERE kerdes_tipus = \"mersz\" ORDER BY RAND() LIMIT 1");
-                while (rs.next()) {   
-                    taskLbl.setText(rs.getString(1));
+                while (rs.next()) { 
+                    String formatidText = "<html>" + rs.getString(1).replace("\n", "<br>") + "</html>";
+                    taskLbl.setText(formatidText);
                 }
             } catch (Exception e) {
             e.printStackTrace();
